@@ -18,8 +18,8 @@ class SticklebackLeadership(Model):
         self.grid.place_agent(boldFish, (1, 1))     
         self.schedule.add(boldFish)
 
-        shyFish = ShyFish(self.next_id(), (10, 10), self)
-        self.grid.place_agent(shyFish, (10, 10))     
+        shyFish = ShyFish(self.next_id(), (2, 2), self)
+        self.grid.place_agent(shyFish, (2, 2))     
         self.schedule.add(shyFish)
 
         # Initialize the water
