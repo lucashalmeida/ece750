@@ -2,7 +2,7 @@ from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 
 from src.model import SticklebackLeadership
-from src.agents import Fish, Water
+from src.agents import ShyFish, BoldFish, Water
 
 
 def stickleback_portrail(agent):
@@ -22,6 +22,20 @@ def stickleback_portrail(agent):
         portrayal["Layer"] = 0
         portrayal["w"] = 1
         portrayal["h"] = 1
+
+    if type(agent) is BoldFish:
+        portrayal["Color"] = ["#FFFFFF"]
+        portrayal["Shape"] = "circle"
+        portrayal["Filled"] = "true"
+        portrayal["Layer"] = 1
+        portrayal["r"] = 1
+    
+    if type(agent) is ShyFish:
+        portrayal["Color"] = ["#AAAAAA"]
+        portrayal["Shape"] = "circle"
+        portrayal["Filled"] = "true"
+        portrayal["Layer"] = 1
+        portrayal["r"] = 1    
 
     return portrayal
 
