@@ -1,5 +1,6 @@
 from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
+from mesa.visualization.UserParam import UserSettableParameter
 
 from src.model import SticklebackLeadership
 from src.agents import ShyFish, BoldFish, Water
@@ -13,9 +14,9 @@ def stickleback_portrail(agent):
 
     if type(agent) is Water:
         if agent.deep:
-            portrayal["Color"] = ["#768DFF", "#7185F2", "#5C67BF"]
-        else:
             portrayal["Color"] = ["#5C67BF", "#4B529B", "#2A2B58"]
+        else:
+            portrayal["Color"] = ["#768DFF", "#7185F2", "#5C67BF"]
 
         portrayal["Shape"] = "rect"
         portrayal["Filled"] = "true"
@@ -53,7 +54,14 @@ chart_element = ChartModule(
     ]
 )
 visualization_elements = [canvas_element]  # [canvas_element, chart_element]
-model_params = {}
+model_params = {
+    "initial_bold": UserSettableParameter(
+        "slider", "Initial Bold Fish Population", 1, 0, 10
+    ),
+    "initial_shy": UserSettableParameter(
+        "slider", "Initial Shy Fish Population", 5, 0, 10
+    ),
+}
 title = "Leadership in Stickleback Fish Pairs"
 
 server = ModularServer(SticklebackLeadership, visualization_elements, title, model_params)
